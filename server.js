@@ -20,11 +20,11 @@ app.get('/api/data', (req, res) =>{
     // console.log('Server is started.')
     // res.send('server is started.')
 
-    setTimeout(() =>{
-        res.send('server is starting.')
-    },3000)
+    // setTimeout(() =>{
+    //     res.send('server is starting.')
+    // },3000)
 
-    // res.send(data)
+    res.send(data)
 })
 
 
