@@ -1,5 +1,5 @@
 import express from 'express'
-import data from '../backend/Data.js'
+import Data from './Data.js'
 
 const app = express()
 
@@ -24,7 +24,7 @@ app.get('/api/data', (req, res) =>{
     //     res.send('server is starting.')
     // },3000)
 
-    res.send(data)
+    res.send(Data)
 })
 
 
