@@ -14,6 +14,13 @@ app.get('/', (req, res) =>{
 })
 
 
+app.get('/api/data', (req, res) =>{
+
+    // console.log('Server is started.')
+    // res.send('server is started.')
+})
+
+
 const port = process.env.PORT || 3000;
 
 // const port = 3000;
