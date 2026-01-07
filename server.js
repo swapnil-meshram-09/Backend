@@ -1,4 +1,5 @@
 import express from 'express'
+import data from '../backend/Data.js'
 
 const app = express()
 
