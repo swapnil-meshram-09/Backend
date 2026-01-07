@@ -4,7 +4,12 @@ const app = express()
 
 app.get('/', (req, res) =>{
     // console.log('Server is started.')
-    res.send('server is started.')
+
+    //res.send('server is started.')
+    
+     setTimeout(() =>{
+        res.send('server is starting.')
+    },1000)
 })
 
 
