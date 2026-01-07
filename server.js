@@ -3,10 +3,8 @@ import express from 'express'
 const app = express()
 
 app.get('/', (req, res) =>{
-
-    res.send('server is started.')
-
     // console.log('Server is started.')
+    res.send('server is started.')
 })
 
 
