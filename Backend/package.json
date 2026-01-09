@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js"
-  },
+    "start": "cd ./Server && node server.js"
+  }, 
   "keywords": [],
   "author": "",
   "license": "ISC",
