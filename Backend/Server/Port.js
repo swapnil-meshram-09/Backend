@@ -3,11 +3,9 @@ import env from 'dotenv'
 
 const app = express()
 
-// const PORT = env.config()
+const port = env.config()
 
-// const PORT2 = process.env.PORT
-
-const PORT2 = 3000
+const PORT2 = process.env.port
 
 app.get('/',(req,res) =>{
     console.log('server is running...'); 
