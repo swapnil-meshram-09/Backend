@@ -8,6 +8,12 @@ const userSchema = new mongoose.Schema(
         unique: true,
         lowercase: true
     },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true
+    },
     
    }, {timestamps:true})
 
