@@ -6,7 +6,11 @@ const orderSchema = new mongoose.Schema(
             type: String,
             required: true
         },
+        price: {
+            type: Number,
+            required: true,
+        },
         
     }, {timestamps: true})
 
-export const Order = monggose.model('Order',orderSchema)
+export const Order = monggose.model('Order',orderScheme)
