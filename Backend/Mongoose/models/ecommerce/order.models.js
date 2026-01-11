@@ -14,7 +14,9 @@ const orderSchema = new mongoose.Schema(
             type: Number,
             required: true,
         },
-        
+        status: {
+            enum: ['pending', 'cancelled','delivered'],
+            required: true,
+        },
     }, {timestamps: true})
 
-export const Order = monggose.model('Order',orderScheme)
