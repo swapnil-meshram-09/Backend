@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-
+import { MONGODB } from '../constants.js'
 
 (async function dbConnect() {
     try{
