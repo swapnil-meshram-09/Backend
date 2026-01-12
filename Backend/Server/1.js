@@ -1,6 +1,6 @@
 import express from 'express'
 import env from 'dotenv'
-import Data from './Data/Data.js'
+import Data from '../Data/Data.js'
 
 const PORT = env.config()
 
