@@ -8,7 +8,7 @@ dotenv.config({
 
 (async function dbConnect() {
     try{
-       const connection = await mongoose.connect(`${}/${}`)
+       const connection = await mongoose.connect(`${process.env.MONGODB_URI}/${}`)
     }catch(error){
         console.log(error);
     }
