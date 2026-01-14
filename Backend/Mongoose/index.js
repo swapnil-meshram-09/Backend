@@ -1,11 +1,11 @@
-import mongoose from 'mongoose'
-import DB_NAME from '../Mongoose/constants.js'
+// import mongoose from 'mongoose'
+// import DB_NAME from '../Mongoose/constants.js'
 
-;(async () => {
-    try{
-        const connectDB = await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`)
-    }catch(error){
-        console.log(error);
-        throw error
-    }
-})()
+// ;(async () => {
+//     try{
+//         const connectDB = await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`)
+//     }catch(error){
+//         console.log(error);
+//         throw error
+//     }
+// })()
