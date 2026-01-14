@@ -1,1 +1,1 @@
-export const MONGODB = user;
+export const DB_NAME = "user";
