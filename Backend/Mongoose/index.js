@@ -3,7 +3,7 @@ import DB_NAME from '../Mongoose/constants.js'
 
 ;(async () => {
     try{
-        await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`)
+        const connectDB = await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`)
     }catch(error){
         console.log(error);
         throw error
