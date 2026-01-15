@@ -1,6 +1,13 @@
+import { log } from "console"
+
 const asyncHandler = (requestHandler) =>{
     (req,res,next) =>{
-        Promise.resolve().catch()
+        Promise
+        .resolve()
+        .catch((error) =>{
+            console.log(error);
+            
+        })
     }
 }
 
