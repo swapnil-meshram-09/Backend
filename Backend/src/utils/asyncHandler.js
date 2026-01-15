@@ -1,5 +1,3 @@
-const asyncHandler = () =>{
-
-}
+const asyncHandler = () => () => {}
 
 export { asyncHandler }
