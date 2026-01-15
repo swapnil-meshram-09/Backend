@@ -1,5 +1,7 @@
 const asyncHandler = (requestHandler) =>{
-
+    () =>{
+        
+    }
 }
 
 
