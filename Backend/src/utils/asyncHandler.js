@@ -1,3 +1,3 @@
-const asyncHandler = () => () => {}
+const asyncHandler = () => async () => {}
 
 export { asyncHandler }
