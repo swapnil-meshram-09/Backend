@@ -8,3 +8,8 @@ cloudinary.config({
 });
 
 
+cloudinary.uploader
+  .upload("my_image.jpg")
+  .then(result=>console.log(result));
+
+
