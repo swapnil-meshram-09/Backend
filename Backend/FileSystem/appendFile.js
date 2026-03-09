@@ -7,6 +7,6 @@
 
 import { appendFile } from 'fs'
 
-appendFile('FileSystem/Files/file.txt', ' new data append in file.', ()=>{
+appendFile('FileSystem/Files/file.txt', ', new data append in file.', ()=>{
     console.log('Data Append');
 })
