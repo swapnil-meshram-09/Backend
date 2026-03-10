@@ -7,6 +7,11 @@ app.use((req, res, next)=>{
     next()
 })
 
+app.use((req, res, next) =>{
+    console.log('Middle ware 2');
+    next()
+})
+
 app.get('/', (req, res)=>{
     res.send('Server started.')
 })
