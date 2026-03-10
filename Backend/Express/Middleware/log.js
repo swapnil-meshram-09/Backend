@@ -2,11 +2,10 @@ import express from 'express'
 
 const app = express()
 
-app.use(()=>{
+app.use((req, res, next)=>{
     console.log('Middle ware');
-    
+    next()
 })
-
 
 app.get('/', (req, res)=>{
     res.send('Server started.')
