@@ -2,9 +2,12 @@ import mongoose from 'mongoose'
 
 const connectDB = async() =>{
     try{
-
-    } catch(){
-
+        const connected = await mongoose.connect('')
+        console.log(connected);
+        
+    } catch(error){
+        console.log(error.message);
+        process.exit(1)
     }
 }
 
