@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start":" ",
+    "start": " ",
     "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js"
   },
   "keywords": [],
@@ -16,10 +16,12 @@
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
+    "ejs": "^5.0.1",
     "express": "^5.2.1",
     "fs": "^0.0.1-security",
     "mongoose": "^9.1.2",
-    "multer": "^2.0.2"
+    "multer": "^2.0.2",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "nodemon": "^3.1.11"
