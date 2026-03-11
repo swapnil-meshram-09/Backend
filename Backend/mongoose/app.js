@@ -1,6 +1,9 @@
 import express from 'express'
 import connectDB from './db/db.js'
 import User from './models/user.js'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const app = express()
 connectDB()
@@ -20,7 +23,7 @@ app.get('/create', async (req, res) =>{
 })
 
 app.get('/find', async (req, res) =>{
-    
+
     res.send()
 })
 
