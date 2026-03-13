@@ -13,7 +13,10 @@ app.get('/', (req, res) =>{
 })
 
 app.get('/verify', (req, res) =>{
-
+    const result = bcrypt.compare('', 'password')
+    console.log(result);
+    
+    res.send('Done')
 })
 
 app.listen(3000)
