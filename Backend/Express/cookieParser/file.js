@@ -6,6 +6,12 @@ app.use(cookieParser())
 
 app.get('/', (req, res) =>{
     res.cookie('string', 'secret')
+    res.send('Done')
+})
+
+app.get('/about', (req, res) =>{
+    res.send(req.cookies)
+    // res.send(req.cookies.string)
 })
 
 app.listen(3000)
