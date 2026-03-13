@@ -10,8 +10,8 @@ app.get('/', (req, res) =>{
 })
 
 app.get('/about', (req, res) =>{
-    res.send(req.cookies)
-    // res.send(req.cookies.string)
+    console.log(req.cookies)
+    res.send(req.cookies.string)
 })
 
 app.listen(3000)
