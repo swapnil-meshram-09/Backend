@@ -2,7 +2,7 @@ import express from 'express'
 import jwt from 'jsonwebtoken'
 import cookieParser from 'cookie-parser'
 import bcrypt from 'bcrypt'
-import connectDB from './db/db.js'
+import connectDB from './config/db.js'
 import userModel from './models/user.js'
 
 const app = express()
