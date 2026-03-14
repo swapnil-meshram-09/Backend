@@ -14,6 +14,11 @@ app.get('/', (req, res) =>{
 app.get('/verify', (req, res) =>{
     console.log(req.cookies.token);
 
+    const token = req.cookies.token
+
+    const verify = jwt.verify(token, 'secret')
+    console.log(verify);
+    
     res.send('Done 2')
 })
 
