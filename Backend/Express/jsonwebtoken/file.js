@@ -6,8 +6,8 @@ const app = express()
 app.use(cookieParser())
 
 app.get('/', (req, res) =>{
-    const token = jwt.sign({email2: 'test@test.com'}, 'ss')
-    res.cookie(token, 'email')
+    const token = jwt.sign({email: 'test@test.com'}, 'secret')
+    res.cookie('token', token)
     res.send('Done')
 })
 
