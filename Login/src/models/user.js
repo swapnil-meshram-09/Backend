@@ -4,20 +4,20 @@ const userScheme = new mongoose.Schema(
     {
         username: {
             type: String,
-            required: true,
-            lowercase: true,
-            unique: true
+            required: [true, 'Username is required'],
+            unique: [true, 'Username is not unique'],
+            lowercase: true
         },
         email:{
             type: String,
-            required: true,
-            lowercase: true,
-            unique: true
+            required: [true, 'Email is required'],
+            unique: [true, 'Email is not unique'],
+            lowercase: true
         },
         password:{
             type: String,
-            required: true,
-            unique: true
+            required: [true, 'Password is required'],
+            unique: [true, 'Password is not unique']
         }
     },
     { timestamps: true}
