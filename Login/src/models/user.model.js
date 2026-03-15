@@ -5,19 +5,19 @@ const userScheme = new mongoose.Schema(
         username: {
             type: String,
             required: [true, 'Username is required'],
-            unique: [true, 'Username is not unique'],
+            unique: [true, 'Username should be unique'],
             lowercase: true
         },
         email:{
             type: String,
             required: [true, 'Email is required'],
-            unique: [true, 'Email is not unique'],
+            unique: [true, 'Email should be unique'],
             lowercase: true
         },
         password:{
             type: String,
             required: [true, 'Password is required'],
-            unique: [true, 'Password is not unique']
+            unique: [true, 'Password should be unique']
         }
     },
     { timestamps: true}

@@ -3,6 +3,6 @@ import config from './config/config.js'
 
 const app = express()
 
-app.listen(process.env.PORT)
+app.listen(config.PORT)
 
 export default app
