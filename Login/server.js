@@ -1,11 +1,10 @@
-import express from 'express'
+import app from './src/app.js'
+import connectDB from './src/config/db.js'
+import userModel from './src/models/user.model.js'
 import jwt from 'jsonwebtoken'
 import cookieParser from 'cookie-parser'
 import bcrypt from 'bcrypt'
-import connectDB from './src/config/db.js'
-import userModel from './src/models/user.js'
 
-const app = express()
 connectDB()
 
 app.set('view engine', 'ejs')
