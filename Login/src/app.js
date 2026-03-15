@@ -2,8 +2,8 @@ import express from 'express'
 import jwt from 'jsonwebtoken'
 import cookieParser from 'cookie-parser'
 import bcrypt from 'bcrypt'
-import connectDB from './config/db.js'
-import userModel from './models/user.js'
+import connectDB from './src/config/db.js'
+import userModel from './src/models/user.js'
 
 const app = express()
 connectDB()
@@ -19,13 +19,13 @@ app.get('/', (req, res) =>{
 })
 
 app.post('/create', (req, res) =>{
-    let {username, email, password} = req.body
+    const {username, email, password} = req.body
 
     bcrypt.genSalt(10, (err, salt)=> {
         bcrypt.hash(password, salt, async (err, hash) =>{
             
            const createUser = await userModel.create({
-               username,
+                username,
                 email, 
                 password: hash
             })
@@ -33,5 +33,34 @@ app.post('/create', (req, res) =>{
         })
     })
 })
+
+app.get('/login', (req, res) =>{
+    res.render('login')
+})
+
+app.post('/login', async (req, res) =>{
+    const {email, password} = req.body
+
+    const user = await userModel.findOne({email})
+    if(!user) return res.send('email or password is incorrect')
+
+    // bcrypt.compare(password, user.password, (err, result) =>{
+    // if(err) return res.send('Incorrect password')
+    // if(! result) return res.send('Correct password')
+
+     const result = await bcrypt.compare(password, user.password)
+     if(!result) return res.send('Incorrect Password')
+
+     const token = jwt.sign({email: user.email}, 'secret')
+     res.cookie('token', token)
+     res.send('Login Successfully')
+})
+
+
+app.get('/logout', (req, res) =>{
+    res.cookie('token', '')
+    res.redirect('/')
+})
+
 
 app.listen(3000)
