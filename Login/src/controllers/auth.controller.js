@@ -3,7 +3,8 @@ import crypto from 'crypto'
 import jwt from 'jsonwebtoken'
 
 export async function register(req, res){
-    const { username, email, password } = req.body
+    try{
+        const { username, email, password } = req.body
 
     const existingUser = await userModel.findOne({
         $or: [
@@ -43,8 +44,9 @@ export async function register(req, res){
         token
     })
 
-
-
-
-
+    }catch(error){
+        res.status(500).json({
+            message: error.message
+        })
+    }
 }
