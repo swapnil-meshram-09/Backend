@@ -1,9 +1,9 @@
 import mongoose from 'mongoose'
-import config from './config'
+import config from './config.js'
 
 const connectDB = async() =>{
     try{
-        const connected = await mongoose.connect(`mongodb://127.0.0.1:27017/auth`)
+        const connected = await mongoose.connect(`${config.MONGODB_URI}/auth`)
         console.log(connected.connection.host);
         
     } catch(error){

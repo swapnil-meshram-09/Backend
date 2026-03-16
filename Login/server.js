@@ -4,6 +4,7 @@ import userModel from './src/models/user.model.js'
 import jwt from 'jsonwebtoken'
 import cookieParser from 'cookie-parser'
 import bcrypt from 'bcrypt'
+import express from 'express'
 
 app.set('view engine', 'ejs')
 app.use(express.json())
