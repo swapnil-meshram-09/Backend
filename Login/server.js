@@ -8,7 +8,6 @@ import userModel from './src/models/user.model.js'
 connectDB()
 
 
-
 // app.get('/', (req, res) =>{
 //     res.render('index')
 // })
