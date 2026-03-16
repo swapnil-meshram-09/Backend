@@ -1,7 +1,6 @@
 import userModel from '../models/user.model.js'
 import crypto from 'crypto'
 import jwt from 'jsonwebtoken'
-import user from '../models/user.model.js'
 
 export async function register(req, res){
     const { username, email, password } = req.body
@@ -14,7 +13,7 @@ export async function register(req, res){
     })
 
     if(existingUser){
-        res.status(409).json({
+        return res.status(409).json({
             message: 'User is already exists.'
         })
     }
@@ -28,10 +27,12 @@ export async function register(req, res){
     })
 
     const token = jwt.sign({
-        id: userModel._id
-    }, 'secret', {
+        id: registerUser._id
+        }, 
+        'secret', 
+        {
         expiresIn: '1d'
-    })
+     })
 
     res.status(201).json({
         message: 'User register successfully.',
