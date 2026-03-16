@@ -1,4 +1,5 @@
 import express from 'express'
+import cookieParser from 'cookie-parser'
 import config from './config/config.js'
 import authRouter from './routes/auth.routes.js'
 
