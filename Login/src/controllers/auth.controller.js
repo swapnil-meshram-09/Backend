@@ -21,20 +21,20 @@ export async function register(req, res){
 
         const hashedPassword = crypto.createHash('sha256').update(password).digest('hex')
     
-        const registerUser = await userModel.create({
+        const user = await userModel.create({
             username, 
             email,
             password: hashedPassword
         })
 
         const accesstoken = jwt.sign({
-            id: registerUser._id
+            id: user._id
             }, 'secret', {
             expiresIn: '30m'
          })
 
         const refreshToken = jwt.sign({
-            id: registerUser._id
+            id: user._id
             }, 'secret', {
             expiresIn: '7d'
         })
@@ -73,6 +73,7 @@ export async function get(req, res){
 
     const decoded = jwt.verify(token, 'secret')
 
-    
+    const user = await userModel.findById(decoded.id)
+
 }
 
