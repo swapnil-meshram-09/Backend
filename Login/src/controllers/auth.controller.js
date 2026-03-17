@@ -6,12 +6,12 @@ export async function register(req, res){
     try{
         const { username, email, password } = req.body
 
-    const existingUser = await userModel.findOne({
+        const existingUser = await userModel.findOne({
         $or: [
             { username },
             { email }
         ]
-    })
+        })
 
     if(existingUser){
         return res.status(409).json({
@@ -50,3 +50,4 @@ export async function register(req, res){
         })
     }
 }
+
