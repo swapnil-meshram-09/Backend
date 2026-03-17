@@ -41,7 +41,7 @@ export async function register(req, res){
 
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
-            secret: true,
+            secure: true,
             sameSite: 'strict',
             maxAge: 7 * 24 * 60 * 60 * 1000
         })
@@ -112,8 +112,8 @@ export async function refreshToken(req, res){
 
     res.cookie('refreshToken', newRefreshToken, {
         httpOnly: true, 
-        secret: true,
-        sameSite: 'secret',
+        secure: true,
+        sameSite: 'strict',
         maxAge: 7 * 24 * 60 * 60 * 1000
     })
 
