@@ -76,7 +76,11 @@ export async function get(req, res){
     const user = await userModel.findById(decoded.id)
 
     res.status(201).json({
-        user
+        message: 'ok',
+        user: {
+            username,
+            email
+        }
     })
 }
 
