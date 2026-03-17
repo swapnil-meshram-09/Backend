@@ -101,7 +101,11 @@ export async function refreshToken(req, res){
     })
 
     const newRefreshToken = jwt.sign({
-        
+        id: user._id,
+        }, 'secret', {
+        expiresIn: '7d'      
     })
+
+
 }
 
