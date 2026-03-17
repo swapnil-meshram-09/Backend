@@ -1,6 +1,8 @@
 import userModel from '../models/user.model.js'
 import crypto from 'crypto'
 import jwt from 'jsonwebtoken'
+import cookieParser from 'cookie-parser'
+import { ref } from 'process'
 
 export async function register(req, res){
     try{
@@ -27,13 +29,24 @@ export async function register(req, res){
         password: hashedPassword
     })
 
-    const token = jwt.sign({
+    const accesstoken = jwt.sign({
         id: registerUser._id
-        }, 
-        'secret', 
-        {
+        }, 'secret', {
         expiresIn: '1d'
      })
+
+    const refreshToken = jwt.sign({
+        id: registerUser._id
+        }, 'secret', {
+        expiresIn: '7d'
+    })
+
+    res.cookie('refreshToken', refreshToken, {
+        httpOnly: true,
+        secret: true,
+        sameSite: true,
+        maxAge: 7 * 24 * 60 * 60 * 1000
+    })
 
     res.status(201).json({
         message: 'User register successfully.',
@@ -41,10 +54,10 @@ export async function register(req, res){
             username,
             email
         },
-        token
+        accesstoken
     })
 
-    }catch(error){
+    } catch(error){
         res.status(500).json({
             message: error.message
         })
