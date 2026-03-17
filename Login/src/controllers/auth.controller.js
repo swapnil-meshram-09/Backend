@@ -106,6 +106,20 @@ export async function refreshToken(req, res){
         expiresIn: '7d'      
     })
 
+    res.cookie('refreshToken', newRefreshToken, {
+        httpOnly: true, 
+        secret: true,
+        sameSite: 'secret',
+        maxAge: 7 * 24 * 60 * 60 * 1000
+    })
 
+    res.status(201).json({
+        message: 'Ok',
+        user: {
+            username,
+            email
+        },
+        accessToken
+    })
 }
 
