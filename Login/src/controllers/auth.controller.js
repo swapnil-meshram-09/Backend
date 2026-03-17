@@ -42,7 +42,7 @@ export async function register(req, res){
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
             secret: true,
-            sameSite: true,
+            sameSite: 'strict',
             maxAge: 7 * 24 * 60 * 60 * 1000
         })
 
@@ -75,5 +75,33 @@ export async function get(req, res){
 
     const user = await userModel.findById(decoded.id)
 
+    res.status(201).json({
+        user
+    })
+}
+
+
+export async function refreshToken(req, res){
+    const refreshToken = req.cookies.refreshToken
+
+    if(!refreshToken){
+        return res.status(409).json({
+            message: 'RefreshToken not found.'
+        })
+    }
+
+    const decoded = jwt.verify(refreshToken, 'secret')
+
+    const user = await userModel.findById(decoded.id)
+
+    const accessToken = jwt.sign({
+        id: user._id,
+       }, 'secret', {
+        expiresIn: '15m'
+    })
+
+    const newRefreshToken = jwt.sign({
+        
+    })
 }
 
