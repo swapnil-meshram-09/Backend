@@ -84,7 +84,6 @@ export async function get(req, res){
     })
 }
 
-
 export async function refreshToken(req, res){
     const refreshToken = req.cookies.refreshToken
 
