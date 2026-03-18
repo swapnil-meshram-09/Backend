@@ -115,21 +115,19 @@ export async function refreshToken(req, res){
 
     const decoded = jwt.verify(refreshToken, 'secret')
 
-    const user = await userModel.findById(decoded.id)
-
     const accessToken = jwt.sign({
-        id: user._id,
+        id: decoded.id,
        }, 'secret', {
         expiresIn: '15m'
     })
 
     const newRefreshToken = jwt.sign({
-        id: user._id,
+        id: decoded.id,
         }, 'secret', {
         expiresIn: '7d'      
     })
 
-    res.cookie('refreshToken', newRefreshToken, {
+    res.cookie('New Refresh Token', newRefreshToken, {
         httpOnly: true, 
         secure: true,
         sameSite: 'strict',
