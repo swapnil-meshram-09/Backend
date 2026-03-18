@@ -1,5 +1,5 @@
-import userModel from '../models/users.model.js'
-import sessionModel from '../models/sessions.model.js'
+import userModel from '../models/user.model.js'
+import sessionModel from '../models/session.model.js'
 import crypto from 'crypto'
 import jwt from 'jsonwebtoken'
 

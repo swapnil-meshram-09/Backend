@@ -9,11 +9,11 @@ const sessionSchema = new mongoose.Schema(
         },
         refreshTokenHash: {
             type: String,
-            required: [true, 'Refresh Token is required.']
+            required: [true, 'Refresh Token Hash is required.']
         },
         ip: {
             type: String,
-            required: [true, 'Ip is required.']
+            required: [true, 'Ip address is required.']
         },
         userAgent: {
             type: String,
