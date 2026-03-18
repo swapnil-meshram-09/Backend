@@ -74,8 +74,8 @@ export async function register(req, res){
         res.status(201).json({
             message: 'User register successfully.',
             user: {
-                username,
-                email
+                username: user.username,
+                email: user.email
             },
             accesstoken
         })
@@ -98,9 +98,14 @@ export async function get(req, res){
 
     const decoded = jwt.verify(token, 'secret')
 
+    const user = await userModel.findById(decoded.id)
+
     res.status(201).json({
-        message: 'ok',
-        token: decoded.id
+        message: 'User found successfully.',
+        user: {
+            username: user.username,
+            email: user.email
+       }
     })
 }
 
