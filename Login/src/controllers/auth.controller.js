@@ -27,17 +27,17 @@ export async function register(req, res){
             password: hashedPassword
         })
 
+         const refreshToken = jwt.sign({
+            id: user._id
+            }, 'secret', {
+            expiresIn: '7d'
+        })
+
         const accesstoken = jwt.sign({
             id: user._id
             }, 'secret', {
             expiresIn: '30m'
          })
-
-        const refreshToken = jwt.sign({
-            id: user._id
-            }, 'secret', {
-            expiresIn: '7d'
-        })
 
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
