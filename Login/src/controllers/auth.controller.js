@@ -115,6 +115,9 @@ export async function refreshToken(req, res){
 
     const decoded = jwt.verify(refreshToken, 'secret')
 
+    const refreshTokenHash = crypto.createHash('sha256').update(refreshToken).digest('hex')
+
+    
     const accessToken = jwt.sign({
         id: decoded.id,
        }, 'secret', {
