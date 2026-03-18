@@ -36,12 +36,30 @@ export async function register(req, res){
 
         const refreshTokenHash = crypto.createHash('sha256').update(refreshToken).digest('hex')
 
-        const session = await sessionModel.findOne({
-            refreshTokenHash
+        // const session = await sessionModel.findOne({
+        //     refreshTokenHash,
+        //     revoked: false
+        // })
+
+        // if(!session){
+        //     return res.status(400).json({
+        //         message: 'Session not found.'
+        //     })
+        // }
+
+        // session.revoked = true
+        // await session.save()
+
+        const session = await sessionModel.create({
+            user: user._id,
+            refreshTokenHash: refreshTokenHash,
+            ip: req.ip,
+            userAgent: req.headers['user-agent']
         })
-        
+
         const accesstoken = jwt.sign({
-            id: user._id
+            id: user._id,
+            sessionId: session._id
             }, 'secret', {
             expiresIn: '30m'
          })
