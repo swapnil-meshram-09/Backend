@@ -98,14 +98,9 @@ export async function get(req, res){
 
     const decoded = jwt.verify(token, 'secret')
 
-    const user = await userModel.findById(decoded.id)
-
     res.status(201).json({
         message: 'ok',
-        user: {
-            username,
-            email
-        }
+        token: decoded.id
     })
 }
 
