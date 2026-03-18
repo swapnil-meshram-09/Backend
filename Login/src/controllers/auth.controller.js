@@ -117,9 +117,16 @@ export async function refreshToken(req, res){
 
     const refreshTokenHash = crypto.createHash('sha256').update(refreshToken).digest('hex')
 
-    
+    const session = await sessionModel.create({
+        user: decoded.id,
+        refreshTokenHash: refreshTokenHash,
+        ip: req.ip,
+        userAgent: req['user-agent']
+    })
+
     const accessToken = jwt.sign({
         id: decoded.id,
+        sessionId: session._id,
        }, 'secret', {
         expiresIn: '15m'
     })
