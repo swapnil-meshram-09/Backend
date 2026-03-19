@@ -4,12 +4,6 @@ export async function create(req, res){
     const { title, description } = req.body
 
     if(!title){
-        if(!description){
-            return res.status(409).json({
-                message: 'Desciption is missing.'
-            })
-        }
-
         return res.status(409).json({
             message: 'Title is missing.'
         })
