@@ -3,13 +3,25 @@ import notesModel from '../models/notes.model.js'
 export async function create(req, res){
     const { title, description } = req.body
 
-    if(!title || !description){
+    if(!title){
+        if(!description){
+            return res.status(409).json({
+                message: 'Desciption is missing.'
+            })
+        }
+
         return res.status(409).json({
-            message: 'Title or description is missing.'
+            message: 'Title is missing.'
         })
     }
 
-    const data = await notesModel.create({
+    if(!description){
+        return res.status(409).json({
+             message: 'Desciption is missing.'
+        })
+    }
+
+    const notes = await notesModel.create({
         title: title,
         description: description
     })
