@@ -3,6 +3,12 @@ import notesModel from '../models/notes.model.js'
 export async function create(req, res){
     const { title, description } = req.body
 
+    if(!title && !description ){
+        return res.status(409).json({
+            message: 'Title & description both are missing.'
+        })
+    }
+
     if(!title){
         return res.status(409).json({
             message: 'Title is missing.'
