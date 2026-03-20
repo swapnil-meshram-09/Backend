@@ -75,3 +75,7 @@ export async function deleteNote(req, res){
         note: note.title
     })
 }
+
+export async function updateNote(req, res){
+
+}
