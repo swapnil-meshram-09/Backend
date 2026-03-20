@@ -54,7 +54,7 @@ export async function getNotes(req, res){
     const notes = await notesModel.find()
 
     res.status(200).json({
-        message: 'Notes fetch successfully.',
+        message: 'Notes fetched successfully.',
         notes: notes
     })
 }
@@ -71,7 +71,7 @@ export async function deleteNote(req, res){
     const noteDelete = await notesModel.findOneAndDelete({ title })
 
     res.status(200).json({
-        message: 'Note delete successfully',
+        message: 'Note deleted successfully',
         note: noteDelete.title
     })
 }
@@ -86,6 +86,9 @@ export async function updateNote(req, res){
     }
 
     const noteUpdate = await notesModel.findOneAndUpdate({ title }, { description })
-    
+
+    res.status(201).json({
+        message: 'Note updated successfully.'
+    })
 
 }
