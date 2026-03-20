@@ -34,15 +34,15 @@ export async function createNote(req, res){
         description: description
     })
 
-    const checkTitle = note.title
+    // const checkTitle = note.title
 
-    const checkNote = await notesModel.findOne({ checkTitle })
+    // const checkNote = await notesModel.findOne({ checkTitle })
 
-    if(!checkNote){
-        return res.status(404).json({
-            message: 'Title is not found.'
-        })
-    }
+    // if(!checkNote){
+    //     return res.status(404).json({
+    //         message: 'Title is not found.'
+    //     })
+    // }
 
     res.status(201).json({
         message: 'Note created successfully.',
@@ -68,7 +68,11 @@ export async function deleteNote(req, res){
         })
     }
 
-    const note = await notesModel.findOne({ title })
+    const note = await notesModel.findOneAndDelete({ title })
 
-    
+    res.status(200).json({
+        message: 'Note delete successfully',
+        note: note.title
+    })
+
 }
