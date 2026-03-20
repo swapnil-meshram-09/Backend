@@ -74,5 +74,4 @@ export async function deleteNote(req, res){
         message: 'Note delete successfully',
         note: note.title
     })
-
 }
