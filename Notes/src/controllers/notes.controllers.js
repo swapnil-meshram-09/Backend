@@ -1,6 +1,6 @@
 import notesModel from '../models/notes.model.js'
 
-export async function create(req, res){
+export async function createNote(req, res){
     const { title, description } = req.body
 
     if(!title && !description ){
@@ -40,11 +40,19 @@ export async function create(req, res){
     })
 }
 
-export async function gets(req, res){
+export async function getNotes(req, res){
     const notes = await notesModel.find()
 
     res.status(200).json({
         message: 'Notes fetch successfully.',
         notes: notes
     })
+}
+
+export async function deleteNote(req, res){
+    const { title } = req.body
+
+    if(){
+        
+    }
 }

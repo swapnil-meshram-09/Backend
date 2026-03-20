@@ -1,10 +1,10 @@
 import { Router } from 'express'
-import { create, gets } from '../controllers/notes.controllers.js'
+import { createNote, getNotes } from '../controllers/notes.controllers.js'
 
 const notesRouter = Router()
 
-notesRouter.post('/', create)
+notesRouter.post('/', createNote)
 
-notesRouter.get('/', gets)
+notesRouter.get('/', getNotes)
 
 export default notesRouter
