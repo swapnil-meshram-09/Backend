@@ -21,13 +21,13 @@ export async function createNote(req, res){
         })
     }
 
-    const isAlready = await notesModel.findOne({ title })
+    const isAlready = await notesModel.findOne({ title: title })
 
-    if(title === isAlready.title){
-        return res.status(409).json({
-            message: 'Title is already present '
-        })
-    }
+    // if(title === isAlready.title){
+    //     return res.status(409).json({
+    //         message: 'Title is already present '
+    //     })
+    // }
 
     const note = await notesModel.create({
         title: title,
