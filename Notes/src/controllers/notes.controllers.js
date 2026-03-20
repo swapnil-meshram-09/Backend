@@ -77,5 +77,13 @@ export async function deleteNote(req, res){
 }
 
 export async function updateNote(req, res){
+    const { description } = req.body
 
+    if(!description){
+        return res.status(404).json({
+            message: 'Description not found.'
+        })
+    }
+
+    
 }
