@@ -32,6 +32,11 @@ export async function create(req, res){
     })
 }
 
-export async function gets(){
+export async function gets(req, res){
+    const notes = await notesModel.find()
 
+    res.status(200).json({
+        message: 'Notes fetch successfully.',
+        notes: notes
+    })
 }
