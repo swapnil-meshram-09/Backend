@@ -29,7 +29,7 @@ export async function createNote(req, res){
     //     })
     // }
 
-    const note = await notesModel.create({
+    const noteCreate = await notesModel.create({
         title: title,
         description: description
     })
@@ -46,7 +46,7 @@ export async function createNote(req, res){
 
     res.status(201).json({
         message: 'Note created successfully.',
-        note: note
+        note: noteCreate
     })
 }
 
@@ -68,16 +68,16 @@ export async function deleteNote(req, res){
         })
     }
 
-    const note = await notesModel.findOneAndDelete({ title })
+    const noteDelete = await notesModel.findOneAndDelete({ title })
 
     res.status(200).json({
         message: 'Note delete successfully',
-        note: note.title
+        note: noteDelete.title
     })
 }
 
 export async function updateNote(req, res){
-    const { description } = req.body
+    const { title, description } = req.body
 
     if(!description){
         return res.status(404).json({
@@ -85,5 +85,7 @@ export async function updateNote(req, res){
         })
     }
 
+    const noteUpdate = await notesModel.findOneAndUpdate({ title }, { description })
     
+
 }
