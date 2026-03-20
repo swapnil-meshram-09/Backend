@@ -5,7 +5,7 @@ export async function create(req, res){
 
     if(!title && !description ){
         return res.status(409).json({
-            message: 'Title & description both are missing.'
+            message: 'Title & description, both are missing.'
         })
     }
 
@@ -18,6 +18,14 @@ export async function create(req, res){
     if(!description){
         return res.status(409).json({
              message: 'Desciption is missing.'
+        })
+    }
+
+    const isAlready = await notesModel.findOne({ title })
+
+    if(title === isAlready.title){
+        return res.status(409).json({
+            message: 'Title is already present '
         })
     }
 
