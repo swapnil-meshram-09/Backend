@@ -10,13 +10,13 @@ export async function createNote(req, res){
     }
 
     if(!title){
-        return res.status(409).json({
+        return res.status(404).json({
             message: 'Title is missing.'
         })
     }
 
     if(!description){
-        return res.status(409).json({
+        return res.status(404).json({
              message: 'Desciption is missing.'
         })
     }
@@ -29,14 +29,24 @@ export async function createNote(req, res){
         })
     }
 
-    const notes = await notesModel.create({
+    const note = await notesModel.create({
         title: title,
         description: description
     })
 
+    const checkTitle = note.title
+
+    const checkNote = await notesModel.findOne({ checkTitle })
+
+    if(!checkNote){
+        return res.status(404).json({
+            message: 'Title is not found.'
+        })
+    }
+
     res.status(201).json({
-        message: 'Notes created successfully.',
-        notes: notes
+        message: 'Note created successfully.',
+        note: note
     })
 }
 
@@ -52,7 +62,13 @@ export async function getNotes(req, res){
 export async function deleteNote(req, res){
     const { title } = req.body
 
-    if(){
-        
+    if(!title){
+        return res.status(404).json({
+            message: 'Title not found.'
+        })
     }
+
+    const note = await notesModel.findOne({ title })
+
+    
 }
