@@ -3,12 +3,12 @@ import { createNote, getNotes, deleteNote, updateNote} from '../controllers/note
 
 const notesRouter = Router()
 
-notesRouter.post('/', createNote)
+notesRouter.post('/create-note', createNote)
 
-notesRouter.get('/', getNotes)
+notesRouter.get('/get-notes', getNotes)
 
-notesRouter.delete('/', deleteNote)
+notesRouter.delete('/delete-note', deleteNote)
 
-notesRouter.patch('/', updateNote)
+notesRouter.patch('/update-note', updateNote)
 
 export default notesRouter

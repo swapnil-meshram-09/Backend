@@ -21,13 +21,13 @@ export async function createNote(req, res){
         })
     }
 
-    const isAlready = await notesModel.findOne({ title: title })
+    const isAlreadyExist = await notesModel.findOne({ title: title })
 
-    // if(title === isAlready.title){
-    //     return res.status(409).json({
-    //         message: 'Title is already present '
-    //     })
-    // }
+    if(!isAlreadyExist){
+        return res.status(409).json({
+            message: 'Note already exists.'
+        })
+    }
 
     const noteCreate = await notesModel.create({
         title: title,
@@ -53,6 +53,12 @@ export async function createNote(req, res){
 export async function getNotes(req, res){
     const notes = await notesModel.find()
 
+    if(!notes){
+        return res.status(409).json({
+            message: 'Notes not found.'
+        })
+    }
+
     res.status(200).json({
         message: 'Notes fetched successfully.',
         notes: notes
@@ -70,9 +76,15 @@ export async function deleteNote(req, res){
 
     const noteDelete = await notesModel.findOneAndDelete({ title })
 
+    if(!noteDelete){
+        return res.status(409).json({
+            message: 'Note not found.'
+        })
+    }
+
     res.status(200).json({
         message: 'Note deleted successfully',
-        note: noteDelete.title
+        note: noteDelete
     })
 }
 
@@ -87,13 +99,14 @@ export async function updateNote(req, res){
 
     const noteUpdate = await notesModel.findOneAndUpdate({ title }, { description })
 
-    // if(title !== noteUpdate.title){
-    //     return res.status(500).json({
-    //         message: 'Title not found.'
-    //     })
-    // }
+    if(!noteUpdate){
+        return res.status(409).json({
+            message: 'Note not found.'
+        })
+    }
 
     res.status(201).json({
-        message: 'Note updated successfully.'
+        message: 'Note updated successfully.',
+        note: noteUpdate
     })
 }
