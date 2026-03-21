@@ -87,8 +87,13 @@ export async function updateNote(req, res){
 
     const noteUpdate = await notesModel.findOneAndUpdate({ title }, { description })
 
+    // if(title !== noteUpdate.title){
+    //     return res.status(500).json({
+    //         message: 'Title not found.'
+    //     })
+    // }
+
     res.status(201).json({
         message: 'Note updated successfully.'
     })
-
 }
