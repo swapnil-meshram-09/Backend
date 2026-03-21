@@ -1,5 +1,6 @@
 import app from './src/app.js'
+import config from './src/configs/config.js'
 
-app.listen(, () =>{
-    console.log(`http://localhost:${}`);
+app.listen(config.PORT, () =>{
+    console.log(`http://localhost:${config.PORT}`);
 })
