@@ -59,4 +59,9 @@ export async function getUsers(req, res){
             message: 'Users not found.'
         })
     }
+
+    res.status(200).json({
+        message: 'User fetched successfully.',
+        users: users
+    })
 }
