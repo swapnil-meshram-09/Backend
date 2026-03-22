@@ -50,3 +50,13 @@ export async function registerUser(req, res){
         user: userRegister
     })
 }
+
+export async function getUsers(req, res){
+    const users = await userModel.find()
+
+    if(!users){
+        return res.status(409).json({
+            message: 'Users not found.'
+        })
+    }
+}
