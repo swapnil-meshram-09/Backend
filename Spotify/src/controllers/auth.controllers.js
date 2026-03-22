@@ -69,27 +69,15 @@ export async function getUsers(req, res){
 export async function loginUser(req, res){
     const { username, email, password } = req.body
 
-    if(!username && !password){
+    if((!username && !password) || (!email && !password)){
         return res.status(409).json({
-            message: 'Username & password are required.'
+            message: 'User credentials are required.'
         })
     }
 
-    if(!email && !password){
+    if((!username || !password) && (!email || !password)){
         return res.status(409).json({
-            message: 'Email & password are required.'
-        })
-    }
-
-    if(!username || !password){
-        return res.status(409).json({
-            message: 'Username or passsword cannot be empty.'
-        })
-    }
-
-    if(!email || !password){
-        return res.status(409).json({
-            message: 'Email or password cannot be empty.'
+            message: 'User credentials are required.'
         })
     }
 
@@ -106,7 +94,7 @@ export async function loginUser(req, res){
         })
     }
 
-    const checkPassword = await bcrypt.compare(password, userModel.password)
+    const checkPassword = await bcrypt.compare(password, userFind.password)
 
     if(!checkPassword){
         return res.status(409).json({
