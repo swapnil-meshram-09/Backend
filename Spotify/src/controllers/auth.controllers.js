@@ -107,3 +107,7 @@ export async function loginUser(req, res){
         user: userFind
     })
 }
+
+export async function deleteUser(req, res){
+
+}
