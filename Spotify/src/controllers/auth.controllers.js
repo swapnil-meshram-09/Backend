@@ -114,9 +114,8 @@ export async function loginUser(req, res){
         })
     }
 
-    
-
-
-
-
+    res.status(201).json({
+        message: 'User login successfully.',
+        user: userFind
+    })
 }
