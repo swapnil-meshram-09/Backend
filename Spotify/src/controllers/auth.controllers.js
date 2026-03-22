@@ -41,7 +41,9 @@ export async function registerUser(req, res){
 
     const token = jwt.sign({
         id: userRegister._id 
-    }, config.JWT_SECRET)
+    }, config.JWT_SECRET, {
+        expiresIn: '1d'
+    })
 
     res.cookie('Token', token)
 
@@ -102,6 +104,14 @@ export async function loginUser(req, res){
         })
     }
 
+    const token = jwt.sign({
+        id: userFind._id
+    }, config.JWT_SECRET, {
+        expiresIn: '1d'
+    })
+
+    res.cookie('Token', token)
+
     res.status(201).json({
         message: 'User login successfully.',
         user: userFind
@@ -109,5 +119,51 @@ export async function loginUser(req, res){
 }
 
 export async function deleteUser(req, res){
+    const { username, email, password } = req.body
 
+    if((!username && !password) || (!email && !password)){
+        return res.status(409).json({
+            message: 'User credentials are required.'
+        })
+    }
+
+    if((!username || !password) && (!email || !password)){
+        return res.status(409).json({
+            message: 'User credentials are required.'
+        })
+    }
+
+    const userFind = await userModel.findOne({
+        $or: [
+            { username },
+            { email }
+        ]
+    })
+
+    if(!userFind){
+        return res.status(409).json({
+            message: 'User not found.'
+        })
+    }
+
+    const checkPassword = await bcrypt.hash(password, userFind.password)
+
+    if(!checkPassword){
+        return res.status(409).json({
+            message: 'User credential are incorrect.'
+        })
+    }
+
+    const token = jwt.sign({
+        id: userFind._id
+    }, config.JWT_SECRET, {
+        expiresIn: '1d'
+    })
+
+    res.cookie('Token', token)
+
+    res.status(201).json({
+        message: 'User delete successfully.',
+        user: userFind
+    })
 }
