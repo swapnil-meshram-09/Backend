@@ -65,3 +65,7 @@ export async function getUsers(req, res){
         users: users
     })
 }
+
+export async function loginUser(req, res){
+
+}
