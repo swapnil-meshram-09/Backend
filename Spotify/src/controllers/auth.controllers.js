@@ -205,6 +205,12 @@ export async function updateUser(req, res){
         })
     }
 
+    const token = jwt.sign({
+        id: userUpdate._id
+    }, config.JWT_SECRET,{
+        expiresIn: '1d'
+    })
+
     
 
 }
