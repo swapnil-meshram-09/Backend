@@ -211,6 +211,11 @@ export async function updateUser(req, res){
         expiresIn: '1d'
     })
 
-    
+    res.cookie('Token', token)
+
+    res.status(201).json({
+        message: 'User data updated.',
+        user: updateUser
+    })
 
 }
