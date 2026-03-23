@@ -192,6 +192,19 @@ export async function updateUser(req, res){
         })
     }
 
+    const userUpdate = await userModel.findOneAndUpdate({ email }, {
+        $or: [
+            { username },
+            { password }
+        ]
+    })
+
+    if(!userUpdate){
+        return res.status(409).json({
+            message: 'User not found.'
+        })
+    }
+
     
 
 }
