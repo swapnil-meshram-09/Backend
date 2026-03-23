@@ -193,10 +193,9 @@ export async function updateUser(req, res){
     }
 
     const userUpdate = await userModel.findOneAndUpdate({ email }, {
-        $and: [
-            { username },
-            { password }
-        ]
+      username, password,{
+        new: true
+      }
     })
 
     if(!userUpdate){
