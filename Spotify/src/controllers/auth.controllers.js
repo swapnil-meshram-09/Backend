@@ -172,13 +172,13 @@ export async function deleteUser(req, res){
 export async function updateUser(req, res){
     const { username, email, password } = req.body
 
-    if((!username && !password) || (!email && !password)){
+    if((!username && !email) || (!email && !password)){
         return res.status(409).json({
             message: 'User credential are required.'
         })
     }
 
-    if((!username || !password) && (!email || !password)){
+    if((!username || !email) && (!email || !password)){
         return res.status(409).json({
             message: 'User credential are required.'
         })
@@ -213,7 +213,7 @@ export async function updateUser(req, res){
 
     res.status(201).json({
         message: 'User data updated.',
-        user: updateUser
+        user: userUpdate
     })
 
 }
