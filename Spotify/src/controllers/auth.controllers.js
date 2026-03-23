@@ -168,3 +168,7 @@ export async function deleteUser(req, res){
         user: userDelete
     })
 }
+
+export async function updateUser(req, res){
+    
+}
