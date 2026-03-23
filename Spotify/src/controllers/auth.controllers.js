@@ -146,7 +146,7 @@ export async function deleteUser(req, res){
         })
     }
 
-    const checkPassword = await bcrypt.hash(password, userFind.password)
+    const checkPassword = await bcrypt.compare(password, userFind.password)
 
     if(!checkPassword){
         return res.status(409).json({
@@ -154,16 +154,17 @@ export async function deleteUser(req, res){
         })
     }
 
-    const token = jwt.sign({
-        id: userFind._id
-    }, config.JWT_SECRET, {
-        expiresIn: '1d'
+    const userDelete = await userModel.findOneAndDelete({
+        $or: [
+            { username },
+            { email }
+        ]
     })
 
-    res.cookie('Token', token)
+    res.clearCookie()
 
     res.status(201).json({
         message: 'User delete successfully.',
-        user: userFind
+        user: userDelete
     })
 }
