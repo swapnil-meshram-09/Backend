@@ -184,5 +184,14 @@ export async function updateUser(req, res){
         })
     }
 
+    const userFind = await userModel.findOne({ email })
+
+    if(!userFind){
+        return res.status(409).json({
+            message: 'User not found.'
+        })
+    }
+
     
+
 }
